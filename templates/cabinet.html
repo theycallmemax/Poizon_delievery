@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/main.css">
+    {% macro render_table(table_name, relation) %}
+
+    {% set n = len(relation) %}
+    <table>
+        <tr>
+            {% for name in relation.columns %}
+                {% if name != "id" %}
+                    <th>{{ name }}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tbody>
+            {% for i in range(n) %}
+                <tr>
+                    {% for name in relation.columns %}
+                       {% if name != "id" %}
+                        <td>
+                            {% if relation.loc[i, name] == None %}
+                                <form action='/package' method="get">
+    <input type="hidden" name="return" value="{{ relation.iloc[i, 0] }}">
+    <input type="submit" value="Детали">
+</form>
+
+                            {% else %}
+                                {{ relation.loc[i, name] }}
+                            {% endif %}
+                        </td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endmacro %}
+</head>
+<body>
+    <header class="head2" id="block2">
+            <div class="logo">
+                <img src="/static/images/logo_kursovaya.png" onclick="history.back()">
+            </div>
+            <div class="Cabinet-button2">
+                <img src="/static/images/whehikle.png">
+                <a href="/">Главная</a>
+                <a href="/zakaz">Сделать заказ</a>
+                <a href="">{% set n = len(combo_box) %}
+                            {% for i in range(n) %}
+                            {% set id_r = combo_box.loc[i, "client_id"] %}
+                            {% if id_r == client_id %}
+                            {{ combo_box.loc[i, "client_name"] }}
+                            {% endif %}
+                            {% endfor %}
+                </a>
+            </div>
+    </header>
+    <div class="main">
+        <h1> Ваши заказы</h1>
+            <h2>Отсортировать</h2>
+            <div class="filters">
+                <img src="/static/images/filter.png">
+
+                    <form action="{{ url_for('cabinet_view') }}" method="get">
+                        <div>
+                        <h3>По статусу посылки:</h3>
+                        <select name="status">
+                             <option  value="0">Все заказы</option>
+                            {% set n = len(combo_status) %}
+                            {% for i in range(n) %}
+                                {% set id_r = combo_status.loc[i, "status_id"] %}
+                                {% if id_r == status_id %}
+                                    <option value={{id_r}} selected>
+                                {% else %}
+                                    <option value={{id_r}}>
+                                {% endif %}
+                                {{ combo_status.loc[i, "status_name"] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <h3>По цене:</h3>
+
+                            <select name="price">
+                                <option value=0 {% if price_sort == 'null' %}selected{% endif %}>-</option>
+                                <option value="asc" {% if price_sort == 'asc' %}selected{% endif %}>По возрастанию</option>
+                                <option value="desc" {% if price_sort == 'desc' %}selected{% endif %}>По убыванию</option>
+                            </select>
+
+
+                    </div>
+
+                    <div>
+                        <h3>По оплате:</h3>
+
+                            <select name="pay">
+                                <option value="2" {% if pay_id == 2 %}selected{% endif %}>Все заказы</option>
+                                <option value="1" {% if pay_id == 1 %}selected{% endif %}>Оплачено</option>
+                                <option value="0" {% if pay_id == 0 %}selected{% endif %}>Не оплачено</option>
+                            </select>
+
+
+                    </div>
+
+                        <input type="submit" value="Отсортировать">
+                    </form>
+        </div>
+
+    </div>
+
+
+            </div>
+            <div class="result">
+                {{ render_table("Заказы",client_package) }}
+            </div>
+
+
+
+
+</body>
+</html>

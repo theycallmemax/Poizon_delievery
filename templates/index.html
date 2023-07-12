@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/main.css">
+    <style>
+        /* Стили для всплывающего окна */
+        .modal {
+            position: fixed;
+            display: flex;
+            width: 400px;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fefefe;
+            border: 1px solid #888;
+            padding: 20px;
+        }
+
+        .modal-content {
+            margin-bottom: 20px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .vertical-line {
+            border-left: 1px solid #888;
+            height: auto;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="https://api.track24.ru/track24widget.js?v=1.74"></script>
+    <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="pzn_auth_bot" data-size="medium" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+    <script type="text/javascript">
+        var track24Options = {
+            'domain': 'track24.ru',
+            'apiKey': 'a04793b8cde201a8b764e2bef9d1fe60',
+            'widgetId': 'track24widget',
+            'inputId': 'track24Input',
+            'buttonId': 'track24Button',
+            'resultId': 'track25Result',
+            'useCss': true,
+            'restoreLastTrackingNumber': true,
+            'validate': false,
+            'language': 'ru'
+        };
+
+        // Функция для открытия и закрытия всплывающего окна
+        function toggleModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = (modal.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</head>
+<body>
+<header class="head" id="block2">
+    <div class="logo">
+        <img src="/static/images/logo_kursovaya.png">
+    </div>
+    <div class="Cabinet-button">
+        <input type="submit" value="Войти" onclick="toggleModal()">
+    </div>
+</header>
+
+<!-- Всплывающее окно авторизации -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="toggleModal()">&times;</span>
+    <div class="modal-content">
+        <h2>Авторизация</h2>
+        <form>
+            <label for="loginPhone">Номер телефона:</label><br>
+            <input type="text" id="loginPhone" name="loginPhone"><br><br>
+            <label for="loginPassword">Пароль:</label><br>
+            <input type="password" id="loginPassword" name="loginPassword"><br><br>
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+    <hr class="vertical-line">
+    <div class="modal-content">
+        <h2>Регистрация</h2>
+        <form>
+            <label for="registerName">Фамилия и Имя:</label><br>
+            <input type="text" id="registerName" name="registerName"><br><br>
+            <label for="registerPhone">Номер телефона:</label><br>
+            <input type="text" id="registerPhone" name="registerPhone"><br><br>
+            <label for="registerPassword">Пароль:</label><br>
+            <input type="password" id="registerPassword" name="registerPassword"><br><br>
+            <input type="submit" value="Регистрация">
+        </form>
+    </div>
+</div>
+
+    <!-- тело -->
+    <div class="bilboard" id="block1">
+        <img src="/static/images/maxresdefault-2%201.png">
+    </div>
+    <div class="way" id="block2">
+        <div class="way-buttons">
+            <a href="#id">Рассчитать доставку</a>
+            <a href="/zakaz">Сделать заказ</a>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="search">
+            <h1>Отследить посылку</h1>
+            <div class="column" style="overflow: hidden;">
+                <div id="track24widget">
+                    <form id="track24Form">
+                        <div class="inputWrapper">
+                            <input id="track24Input" type="text" value="" placeholder="Пример: 17010075171291">
+                            <button id="track24Button" type="submit">Отследить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sum">
+        <div class="calculator">
+            <div>
+                <form action="{{ ('/') }}#sum" method="get">
+                    <h1>Рассчитать стоимость доставки</h1>
+                    <p>Выберите населенный пункт
+                        <select name="city" value="{{ city }}">
+                            {% for i in range(len(city_list)) %}
+                                {% if i == city_id %}
+                                    <option selected value="{{ i }}">{{ city_list[i] }}</option>
+                                {% else %}
+                                    <option value="{{ i }}">{{ city_list[i] }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <p>Длина посылки (см)
+                        <input type="text" name="lenth" placeholder="0" value="{{ lenth }}">
+                    </p>
+                    <p>Ширина посылки (см)
+                        <input type="text" name="width" placeholder="0" value="{{ width }}">
+                    </p>
+                    <p>Высота посылки (см)
+                        <input type="text" name="height" placeholder="0" value="{{ height }}">
+                    </p>
+                    <p>Вес посылки (кг)
+                        <input type="text" name="weight" placeholder="0" value="{{ weight }}">
+                    </p>
+
+                    <p>
+                        <input type="submit" value="Отправить">
+                        <input type="submit" name="default" value="Сбросить">
+                    </p>
+                </form>
+            </div>
+            {% if request.values.get('weight') %}
+            <div>
+                {% if lenth == 0 or lenth == '0' or width == 0 or width == '0' or height == 0 or height == '0' or weight == 0 or weight == '0' %}
+                <h3>Введите все значения</h3>
+                {% else %}
+                <h3>Стоимость доставки: {{ summa }} р.</h3>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="result+info">
+            <div id="track25Result" class="track24Result"></div>
+            <div class="info">
+                <div class="left-info">
+                    <h3>1126 посылок доставлено</h3>
+                    <h3>6 месяцев работаем с POIZON</h3>
+                    <h3>2 минуты, чтобы сделать заказ</h3>
+                    <h3>Доставляем по всей России</h3>
+                </div>
+                <div class="right-info">
+                    <button>Владивосток</button>
+                    <h3>Стоимость доставки 600₽/кг</h3>
+                    <h3>Количество посылок в месяц 120</h3>
+                    <h3>Срок доставки ~10 дней</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Футер -->
+<footer></footer>
+        <script>
+            // Закрытие всплывающего окна при клике вне его области
+        window.onclick = function (event) {
+            var modal = document.getElementById("myModal");
+            var closeButton = document.getElementsByClassName("close")[0];
+            if (event.target === modal || event.target === closeButton) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+</body>
+</html>

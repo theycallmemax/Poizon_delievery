@@ -1,0 +1,552 @@
+.menu {
+    background-color: black;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+
+}
+
+.menu a {
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+   color: white;
+}
+
+.menu ul {
+    padding: 0px;
+}
+
+.menu button {
+    height: auto;
+    width: 200px;
+}
+
+.bilboard img{
+    height: 30%;
+    width: 100%;
+    z-index: 1;
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+
+
+
+.way {
+    position: sticky;
+    display: grid;
+    grid-template-columns: 1fr 1fr 40%;
+    background-color: #48BBC3;
+    border-radius: 10px;
+    width: 90%;
+    height: 150px;
+    margin: auto;
+    margin-top: -60px;
+    z-index: 2;
+    webkit-box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+}
+
+
+
+
+.way-buttons {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin: auto auto auto 150px;
+
+}
+
+#track24Input {
+    width: 300px;
+    height: 45px;
+
+}
+
+.way-buttons a {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    margin: 10px;
+    margin-left: 10px;
+    box-shadow: 0 -3px grey;
+    border: black;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+   webkit-box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+}
+
+
+
+
+
+.search {
+
+    margin: auto auto auto -100px;
+
+}
+
+.vertical-line {
+    border-left: 2px solid black;
+    height: 140px;
+    width: 2px;
+    margin: 5px 140px;
+
+}
+
+.API {
+    width: 90%;
+}
+
+.sum {
+    display: flex;
+    margin: auto;
+    width: 90%;
+
+}
+#block1 {
+    z-index: 1;
+}
+
+#block2 {
+    z-index: 2;
+}
+
+.info {
+
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+    margin: 30px 0;
+    padding: 15px;
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+
+.head {
+    position: sticky;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -60px;
+
+}
+
+.Cabinet-button {
+    text-align: right;
+    margin-right: 20px;
+    width: 400px;
+
+}
+
+.Cabinet-button input {
+    background-color: lightgrey;
+    color: black;
+    border-radius: 10px;
+    padding-top: -20px;
+    border: grey;
+    width: 130px;
+    height: 40px;
+    margin: 10px;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px; /* Значение line-height равно высоте кнопки */
+    -webkit-box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+}
+
+
+
+
+
+.logo {
+   margin-left: 20px;
+}
+
+.right-info button {
+    width: 150px;
+    margin-top: 25px;
+}
+
+.track24Result {
+    margin-top: 20px;
+
+}
+
+.result\+info {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin: auto 0;
+    width: 50%;
+    margin-left: auto;
+
+}
+
+.calculator {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+
+.right-info {
+    margin: auto;
+}
+
+.left-info {
+    margin: auto;
+}
+
+#track24Button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 55px;
+    margin-left: 10px;
+    box-shadow: 0 -3px grey ;
+    border: black;
+    webkit-box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 5px 0 rgba(0,0,0,.25);
+}
+
+#track24Input {
+    border-radius: 10px;
+
+    height: 45px;
+}
+
+.Cabinet-button2 a {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    margin: 10px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+.Cabinet-button2 a:last-child {
+    background-color: #48BBC3;
+    color: black;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    margin: 10px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+.Cabinet-button2 img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+
+
+}
+
+.head2 {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    border-radius: 10px;
+}
+
+.result th {
+    background-color: #48BBC3;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.result tr {
+    height: 40px;
+    margin: auto;
+}
+
+.result td {
+    margin: auto;
+    text-align: center;
+    padding: 6px;
+}
+
+.result table {
+    border-radius: 10px;
+    margin: 0 30px;
+    background-color: aliceblue;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.filters img{
+    width: 40px;
+    height: 40px;
+    margin-top: 35px;
+
+
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100px;
+    margin: auto 100px 50px 10px;
+}
+
+.filters form {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    margin: 0 10px;
+}
+
+.filters input {
+    margin-top: 40px;
+    margin-left: 50px;
+    width: 150px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-size: 1.03rem;
+    border-radius: 10px;
+
+}
+
+.Cabinet-button2 a{
+    width: auto;
+
+}
+
+.base+new-adress {
+
+    margin: auto;
+
+}
+
+.base {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.new-adress {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px black solid;
+    margin: 100px auto auto auto;
+    padding: 15px;
+    width: 40%;
+
+}
+
+.base {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
+.base input[type=submit]:nth-child(1) {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    margin: 15px auto;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+.zakaz-buttons2 a {
+    background-color: #48BBC3;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    margin: 15px auto;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+    webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+.base input[type=text] {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.base select {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.new-adress input[type=text] {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.new-adress h2 {
+    margin: 15px auto;
+}
+
+.base h1 {
+    margin: 50px 0;
+}
+
+.result-adress table{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+  .result-adress {
+      border: 1px solid black;
+      border-radius: 10px;
+      display: inline-block;
+      height: 300px;
+      padding: 40px 30px 0 30px;
+      margin: 150px auto;
+}
+
+
+
+
+.result-adress table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.result-adress th,
+.result-adress td {
+      padding: 10px;
+      text-align: center;
+
+}
+
+.zakaz-buttons {
+    display: flex;
+    margin: auto;
+}
+
+.zakaz-buttons2 {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+.zakaz-buttons2 h3{
+    margin-right: 350px;
+}
+
+.base {
+    margin-top: 10px;
+}
+
+.logo a {
+
+    color: black;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    height: 40px; /* изменение высоты кнопки */
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px; /* выравнивание текста по вертикали */
+    -webkit-box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+    box-shadow: 0 10px 42px 0 rgba(0,0,0,.25);
+}
+
+
+
+
+.logo {
+    display: flex;
+    vertical-align: middle;
+
+    height: 40px;
+}
+
+
+.result2 {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    width: 90%;
+    margin: 30px;
+}
+
+.result2 th {
+    background-color: #48BBC3;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.result2 tr {
+    height: 40px;
+    margin: auto;
+}
+
+.result2 td {
+    margin: auto;
+    text-align: center;
+    padding: 6px;
+}
+
+.result2 table {
+    border-radius: 10px;
+    margin: 0 30px;
+    background-color: aliceblue;
+    padding: 15px;
+    border: 1px solid black;
+}

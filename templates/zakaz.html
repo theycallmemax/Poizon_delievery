@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сделать заказ</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/main.css">
+    {% macro render_table(relation) %}
+    {% set n = len(relation) %}
+    <table>
+        <tbody>
+            {% for name in relation.columns %}
+                {% if name != "id" %}
+                    <tr>
+                        <th>{{ name }}</th>
+                        {% for i in range(n) %}
+                            <td>{{ relation.loc[i, name] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endmacro %}
+    <style>
+        .result-adress {
+            display: none;
+        }
+    </style>
+    <script>
+        function updateAdress() {
+            var selectElement = document.getElementById('adress-select');
+            var selectedValue = selectElement.value;
+            var newAdressDiv = document.getElementById('new-adress');
+            var resultAdressDiv = document.getElementById('result-adress');
+
+            // Проверяем выбранное значение и заменяем div в зависимости от него
+            if (selectedValue === '1') {
+                newAdressDiv.style.display = 'none';
+                resultAdressDiv.style.display = 'block';
+            } else {
+                newAdressDiv.style.display = 'block';
+                resultAdressDiv.style.display = 'none';
+            }
+        }
+
+        function validateForm() {
+    var form = document.getElementById('order-form');
+    var inputs = form.getElementsByTagName('input');
+    var selectElement = document.getElementById('adress-select');
+    var selectedValue = selectElement.value;
+
+    // Проверяем заполнение всех полей в блоке "Создать новый адрес"
+    if (selectedValue === '0') {
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].parentNode.id === 'new-adress' && inputs[i].value.trim() === '') {
+                alert('Пожалуйста, заполните все поля в блоке "Создать новый адрес".');
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+        function addLinkInput() {
+                    var linkContainer = document.getElementById('link-container');
+                    var newLinkInput = document.createElement('input');
+                    newLinkInput.type = 'text';
+                    newLinkInput.name = 'ref';
+                    linkContainer.appendChild(newLinkInput);
+                }
+
+    </script>
+</head>
+<body>
+<header class="head2" id="block2">
+    <div class="logo">
+        <img src="/static/images/logo_kursovaya.png" >
+
+    </div>
+    <div class="Cabinet-button2">
+        <a href="/">Главная</a>
+        <img src="/static/images/whehikle.png">
+        <a href="/cabinet">
+            {% set n = len(combo_box) %}
+            {% for i in range(n) %}
+                {% set id_r = combo_box.loc[i, "client_id"] %}
+                {% if id_r == client_id %}
+                    {{ combo_box.loc[i, "client_name"] }}
+                {% endif %}
+            {% endfor %}
+        </a>
+    </div>
+</header>
+<form class="sum" id="order-form" action="/zakaz" method="get" onsubmit="return validateForm()">
+    <div class="base">
+        <h1>Сделать заказ</h1>
+        Введите ссылку на товар:
+        <div id="link-container">
+            <input type="text" name="ref">
+        </div>
+        <button type="button" onclick="addLinkInput()">Добавить еще одну ссылку</button>
+        Выберите адрес:
+        <select id="adress-select" name="new_adress" onchange="updateAdress()">
+            <option value="0" selected>Новый адрес</option>
+            <option value="1">{{ combo_adress.loc[0, 'Адрес:'] }}</option>
+        </select>
+        Введите общую стоимость в юанях:
+        <input type="text" name="cost">
+        {% if request.values.get('cost') %}
+        Стоимость {{ sum }} ₽
+        {% endif %}
+        <div class="zakaz-buttons">
+            <input type="submit" value="Создать заказ">
+            {% if request.values.get('ref') %}
+                <div class="zakaz-buttons2">
+                    <a href="/cabinet">В кабинет</a>
+                    <h3>Спасибо за заказ!</h3>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div id="new-adress" class="new-adress">
+        <h2>Создать новый адрес</h2>
+        ФИО получателя:
+        <input type="text" name="name">
+        Номер телефона:
+        <input type="text" name="phone">
+        Введите город:
+        <input type="text" name="city">
+        Ваша улица:
+        <input type="text" name="adress">
+        Индекс:
+        <input type="text" name="index">
+        Введите адрес пункта выдачи Boxberry:
+        <input type="text" name="point">
+    </div>
+    <div id="result-adress" class="result-adress">
+        {{ render_table(combo_adress) }}
+    </div>
+</form>
+</body>
+</html>

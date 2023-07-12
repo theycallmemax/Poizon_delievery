@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Посылка</title>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/main.css">
+    {% macro render_table(table_name, relation) %}
+
+    {% set n = len(relation) %}
+    <table>
+        <tr>
+            {% for name in relation.columns %}
+                {% if name != "id" %}
+                    <th>{{ name }}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tbody>
+            {% for i in range(n) %}
+                <tr>
+                    {% for name in relation.columns %}
+                       {% if name != "id" %}
+                        <td>
+
+                                {{ relation.loc[i, name] }}
+
+                        </td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endmacro %}
+</head>
+<body>
+<header class="head2" id="block2">
+            <div class="logo">
+                <img src="/static/images/logo_kursovaya.png" onclick="history.back()">
+            </div>
+            <div class="Cabinet-button2">
+                <a href="/cabinet" ">Назад</a>
+                <a href="">{% set n = len(combo_box) %}
+                            {% for i in range(n) %}
+                            {% set id_r = combo_box.loc[i, "client_id"] %}
+                            {% if id_r == client_id %}
+                            {{ combo_box.loc[i, "client_name"] }}
+                            {% endif %}
+                            {% endfor %}
+                </a>
+            </div>
+    </header>
+<div class="result2">
+                {{ render_table("Ваша посылка",package_thing) }}
+</div>
+
+</body>
+</html>
